@@ -1,6 +1,6 @@
   
 import java.util.*;
-public class EmployeeWageComputation implements IComputeEmpWage
+public class EmpComputation implements IcomputeEmpWage
 {
 	public static final int isFullTime=1;
 	public static final int isPartTime=2;
@@ -10,7 +10,7 @@ public class EmployeeWageComputation implements IComputeEmpWage
 	private LinkedList<CompanyEmpWage> companyEmpWageList;
 	private Map<String,CompanyEmpWage> companyToEmpWageMap;
 
-	public EmployeeWageComputation() {
+	public EmpWageComputation() {
 		companyEmpWageList=new LinkedList<>();
 		companyToEmpWageMap=new HashMap<>();
 		dailyWageList=new LinkedList<>();
@@ -31,8 +31,6 @@ public class EmployeeWageComputation implements IComputeEmpWage
 			System.out.println(companyEmpWage);
 		}
 	}
-
-	@Override
 	public int getTotalWage(String company) {
 		return companyToEmpWageMap.get(company).totalEmpWage;
 	}
@@ -61,7 +59,7 @@ public class EmployeeWageComputation implements IComputeEmpWage
 
 	public void getDailyWage() {
 		for(int i=0; i<dailyWageList.size();i++) {
-        		System.out.println("Day#: "+(i+1)+" Wage "+dailyWageList.get(i));
+        		System.out.println("Day"+(i+1)+" Wage "+dailyWageList.get(i));
         	}
 	}
 
@@ -71,5 +69,7 @@ public class EmployeeWageComputation implements IComputeEmpWage
 		e.addCompanyEmpWage("Reliance",10,4,20);
 		e.computeEmpWage();
 		System.out.println("total wage for Dmart company is :"+ e.getTotalWage("DMart"));
+		System.out.println("total wage for Reliance company is :"+ e.getTotalWage("Reliance"));
+		
 	}
 }
