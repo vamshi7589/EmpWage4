@@ -6,7 +6,7 @@ public class EmployeeWageComputation
 	final int empRatePerHour;
 	final int maxHours;
         final int maxDays;
-	String company;
+	final String company;
 	int totalEmpWage;
 
 	public EmployeeWageComputation(String company,int empRatePerHour,int maxDays,int maxHours) {
