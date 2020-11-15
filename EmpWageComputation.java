@@ -5,12 +5,14 @@ public class EmployeeWageComputation implements IComputeEmpWage
 	public static final int isPartTime=2;
 
 	private int numOfCompany=0;
+	private LinkedList<String> dailyWageList;
 	private LinkedList<CompanyEmpWage> companyEmpWageList;
 	private Map<String,CompanyEmpWage> companyToEmpWageMap;
 
 	public EmployeeWageComputation() {
 		companyEmpWageList=new LinkedList<>();
 		companyToEmpWageMap=new HashMap<>();
+		dailyWageList=new LinkedList<>();
 	}
 
 	public void addCompanyEmpWage(String company,int empRatePerHour,int numOfWorkingDays, int maxHoursPerMonth) {
@@ -44,10 +46,17 @@ public class EmployeeWageComputation implements IComputeEmpWage
 				default:
 					empHours=0;
 			}
+			this.dailyWageList.add(String.valueOf(empHours*companyEmpWage.empRatePerHour));
 			totalEmpHours+=empHours;
-			System.out.println("Day#: "+ totalWorkingDays+" Emp Hr: " +empHours);
 		}
+		this.getDailyWage();
 		return totalEmpHours*companyEmpWage.empRatePerHour;
+	}
+
+	public void getDailyWage() {
+		for(int i=0; i<dailyWageList.size();i++) {
+        		System.out.println("Day#: "+(i+1)+" Wage "+dailyWageList.get(i));
+        	}
 	}
 
 	public static void main(String[] args) {
