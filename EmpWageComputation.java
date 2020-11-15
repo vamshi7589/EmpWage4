@@ -1,4 +1,4 @@
-public class EmployeeWageComputation
+public class EmployeeWageComputation implements IComputeEmpWage
 {
 	public static final int isFullTime=1;
 	public static final int isPartTime=2;
@@ -10,21 +10,21 @@ public class EmployeeWageComputation
 	companyEmpWageArray= new CompanyEmpWage[5];
 	}
 
-	private void addCompanyEmpWage(String company,int empRatePerHour,int numOfWorkingDays, int maxHoursPerMonth) {
+	public void addCompanyEmpWage(String company,int empRatePerHour,int numOfWorkingDays, int maxHoursPerMonth) {
 
 		companyEmpWageArray[numOfCompany]=new CompanyEmpWage(company,empRatePerHour,numOfWorkingDays,maxHoursPerMonth);
 
 		numOfCompany++;
 	}
 
-	private void computeEmpWage() {
+	public void computeEmpWage() {
 		for (int i=0;i< numOfCompany; i++) {
 			companyEmpWageArray[i].setTotalEmpWage(this.computeEmpWage(companyEmpWageArray[i]));
 			System.out.println(companyEmpWageArray[i]);
 		}
 	}
 
-	private int computeEmpWage(CompanyEmpWage companyEmpWage) {
+	public int computeEmpWage(CompanyEmpWage companyEmpWage) {
 		int empHours=0, totalEmpHours=0, totalWorkingDays=0;
 		while(totalEmpHours<=companyEmpWage.maxHoursPerMonth && totalWorkingDays<companyEmpWage.numOfWorkingDays) {
 			totalWorkingDays++;
