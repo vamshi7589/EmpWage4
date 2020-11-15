@@ -2,11 +2,19 @@ public class EmployeeWageComputation
 {
 	final int isFullTime=1;
 	final int isPartTime=2;
-	final int partTimeHours=4;
-	final int fullTimeHours=8;
-	final int empRatePerHour=20;
-	final int maxHours=100;
-        final int maxDays=20;
+
+	final int empRatePerHour;
+	final int maxHours;
+        final int maxDays;
+	String company;
+	int totalEmpWage;
+
+	public EmployeeWageComputation(String company,int empRatePerHour,int maxDays,int maxHours) {
+		this.company=company;
+		this.empRatePerHour=empRatePerHour;
+		this.maxHours=maxHours;
+		this.maxDays=maxDays;
+	}
 
 	public int empAttendance() {
 		int empCheck=(int) Math.floor(Math.random()*10)%3;
@@ -28,6 +36,8 @@ public class EmployeeWageComputation
 		}
 	}
 	public int daliyWage(int n) {
+		final int partTimeHours=4;
+	        final int fullTimeHours=8;
 		int empWage=0;
 		switch (n) {
 		case isFullTime:
@@ -41,7 +51,9 @@ public class EmployeeWageComputation
 		}
 		return empWage;
 	}
-	public int monthlyWage() {
+	public void monthlyWage() {
+		final int partTimeHours=4;
+                final int fullTimeHours=8;
 		int days = 0;
 		int hours=0;
 		int monthlyWage = 0;
@@ -61,11 +73,14 @@ public class EmployeeWageComputation
 			}
 			days++;
 		}
-		return monthlyWage;
+		this.totalEmpWage=monthlyWage;
 	}
 	public static void main(String[] args) {
-		EmployeeWageComputation e = new EmployeeWageComputation();
-		e.welcomeMessage();
-		System.out.println("Monthly Wage is "+e.monthlyWage()); 
+		EmployeeWageComputation dMart = new EmployeeWageComputation("DMArt",20,20,100);
+		EmployeeWageComputation reliance = new EmployeeWageComputation("Reliance",10,25,100);
+		dMart.monthlyWage();
+		reliance.monthlyWage();
+		System.out.println("Monthly Wage of DMart is "+dMart.totalEmpWage); 
+		System.out.println("Monthly Wage of Reliance is "+reliance.totalEmpWage);
 	}
 }
