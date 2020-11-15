@@ -1,3 +1,4 @@
+  
 import java.util.*;
 public class EmployeeWageComputation implements IComputeEmpWage
 {
@@ -29,6 +30,11 @@ public class EmployeeWageComputation implements IComputeEmpWage
 			companyEmpWage.setTotalEmpWage(this.computeEmpWage(companyEmpWage));
 			System.out.println(companyEmpWage);
 		}
+	}
+
+	@Override
+	public int getTotalWage(String company) {
+		return companyToEmpWageMap.get(company).totalEmpWage;
 	}
 
 	public int computeEmpWage(CompanyEmpWage companyEmpWage) {
@@ -64,5 +70,6 @@ public class EmployeeWageComputation implements IComputeEmpWage
 		e.addCompanyEmpWage("DMart",20,2,10);
 		e.addCompanyEmpWage("Reliance",10,4,20);
 		e.computeEmpWage();
+		System.out.println("total wage for Dmart company is :"+ e.getTotalWage("DMart"));
 	}
 }
